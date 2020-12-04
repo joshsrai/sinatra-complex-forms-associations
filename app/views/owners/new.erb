@@ -2,16 +2,24 @@
 
 <form action="/owners" method="POST">
   <label>Name:</label>
-
   <br>
-
   <input type="text" name="owner[name]">
+  <br>
+  <p>Select an existing pet or create a new one below.</p>
 
+  <%# from the controllers/owners_controller.rb,(get '/owners/new') controller action
+    this will iterate over all the Pets in the database 
+   and inject each pet's information into dynamically generated checkboxes form elements. %>
   <h3>Existing Pets</h3>
-  <% @pets.each do |pet| %>
+  <% @pets.each do |pet| %> 
     <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"><%= pet.name %><br>
   <% end %>
   <br>
-
+and/or, create a new pet:
+  <h3>New Pet</h3>
+  <label>Pet Name: </label>
+  <br>
+  <input type="text" name="pet[name]" id="pet_name"></input>  <%# this will create a new pet %>
+  <br><br>
   <input type="submit" value="Create Owner">
 </form>
